@@ -18,6 +18,7 @@ every real edit without ever carrying the edit's private details.
   reel-recut/              # spec-driven creator reel: banner, karaoke captions, callouts, silence cuts
   reel-style-clone/        # reference reel → STYLE-GUIDE.md + build directives (slides mode: references/slides.md)
   html-motion-templates/   # timed motion contracts (5–15 s, 1080×1920) for HyperFrames: manifesto, logo, notifications, chat, beat type, VHS countdown
+  object-separation/       # local SAM 2 subject cut-out (person/product/hand) with masks; third-party, MIT — see ATTRIBUTION.md
   arcads-video-edit/       # multi-take screen+camera+mic demo → EDL base cut → motion-graphics pass
   recap-video/            # event recap: per-line takes, supplied B-roll, split/full layouts, exact assembly
   hook-splitter/           # one long composite of many hooks → N tightened standalone videos
