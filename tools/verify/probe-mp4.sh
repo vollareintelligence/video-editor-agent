@@ -9,6 +9,7 @@
 #   scripts/probe-mp4.sh out.mp4 1080x1920 30    # assert vertical 1080x1920 @ ~30fps
 # Needs: ffprobe (ships with ffmpeg).
 set -euo pipefail
+export LC_ALL=C  # Vollare: printf %.2f fails under comma-decimal locales (pt_BR), aborting before the assertions
 mp4="${1:?usage: probe-mp4.sh <file.mp4> [WxH] [fps]}"
 exp_res="${2:-}"; exp_fps="${3:-}"
 q(){ ffprobe -v error -select_streams v:0 -show_entries "$1" -of csv=p=0 "$mp4" | head -1; }

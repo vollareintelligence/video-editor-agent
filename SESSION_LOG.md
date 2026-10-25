@@ -586,3 +586,15 @@ Lição: `metadata=print` do ffmpeg só emite no stdout com `file=-`.
 - Documentado, não copiado: skills da Remotion (sem LICENSE no repositório).
 - Lição: verificar o arquivo LICENSE no próprio repositório, não confiar no campo de licença
   de índices de terceiros. O pacote upstream deste fork também não tem LICENSE.
+
+## 2026-10-25 (noite) — primeira instalação em Windows (piloto)
+
+- Pacote instalado em Windows 11 com Git Bash. Template 05 do `html-motion-templates`
+  passou no `hyperframes check` e renderizou 8 s/240 quadros em ~52 s (GPU de hardware).
+- Problemas de Windows encontrados: `python3` é o alias da Microsoft Store (resolver com um
+  shim que chama `py -3`); `setup.py` não achava `npm` (shim `.cmd`) — corrigido em `run()`
+  com `shutil.which`; `hyperframes check` fica parado sem navegador — apontar
+  `HYPERFRAMES_BROWSER_PATH` para o Chrome instalado; `probe-mp4.sh` abortava em locale
+  pt_BR (`printf` com vírgula decimal) — corrigido com `LC_ALL=C`.
+- Lição: verificar a saída E o código de saída das ferramentas de verificação; o probe
+  imprimiu a linha de especificação e saiu com erro sem afirmar nada.
