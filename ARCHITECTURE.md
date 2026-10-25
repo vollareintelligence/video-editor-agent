@@ -42,6 +42,7 @@ tools/video-qa/            # the QA ENGINE: a standalone node package (tsx/zod),
   src/                     #   layer1-technical, layer2-transcript, layer3-semantic, inspect, report,
                            #   manifest/{schema,adapter-hyperframes}, transcribe, gemini, cache, env
   src/__tests__/           #   offline deterministic + real-media regressions; live ASR opt-in
+tools/verify/              # shell checks run on the RENDERED MP4: probe-mp4.sh (asserts resolution/codec/fps), contact-sheet.sh (start|mid|end sheet). Third-party, MIT — see ATTRIBUTION.md
 tools/editor/              # Python stdlib project state, stage resume and footage library
   editor.py               #   project init/status/resume/checkpoint/render/approve/note/import-review
                           #   catalog ingest/search/annotate/use
