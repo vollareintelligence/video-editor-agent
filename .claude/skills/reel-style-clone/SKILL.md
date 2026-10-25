@@ -46,6 +46,11 @@ file is the territory.
 
 ## Pipeline
 
+**Slide references:** if the reference has no audio track and zero cuts (typical of a
+4:5 carousel downloaded slide by slide), switch to
+[references/slides.md](references/slides.md): skip transcription and BPM, measure motion
+per region instead of cuts/sec, and read on-screen text from full-res frames.
+
 ### 1. Probe & cut detection
 
 `ffprobe` the reference (duration / resolution / fps). Detect hard cuts with

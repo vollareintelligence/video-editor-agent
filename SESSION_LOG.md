@@ -562,3 +562,14 @@ five skill validations. Rechecked whitespace and public-repository hygiene befor
 committing. Media, credentials, local review storage and personal configuration
 remain ignored. No architecture or implementation changes were needed for this
 publication step.
+
+## 2026-10-25 — Modo slides no reel-style-clone + biblioteca html-motion-templates
+
+Referência recebida: carrossel de 8 vídeos 4:5 sem áudio e sem cortes (capa, 6 ideias
+com demo e CTA). O pipeline de reel devolveu zero cortes e nenhuma faixa de áudio, e isso
+é o formato, não erro. Criado `reel-style-clone/references/slides.md`: detectar o caso,
+medir movimento por região com YDIF (perfil medido: capa 96%, conteúdo 24–62%, CTA 5%)
+e ler o texto em frames de resolução cheia. Guia de formato em
+`references/format-carousel-ideas.md`. Novo skill `html-motion-templates` com 6
+contratos de animação reescritos (sem copiar prompts, paleta ou identidade da referência).
+Lição: `metadata=print` do ffmpeg só emite no stdout com `file=-`.

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --cor-a: #0d1b2e;
+        --cor-b: #e85d26;
+        --ink: #ffffff;
+        --font-display: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--cor-a); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: var(--font-display); }
+      #bg { position: absolute; inset: 0; background: var(--cor-a); }
+      .palavra {
+        position: absolute; left: 0; right: 0; top: 50%;
+        transform: translateY(-50%);
+        text-align: center; color: var(--ink);
+        font-size: 230px; font-weight: 900; letter-spacing: -0.04em; line-height: 1;
+        text-transform: lowercase; opacity: 0;
+      }
+      #flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+      #frase {
+        position: absolute; left: 90px; right: 90px; top: 50%; transform: translateY(-50%);
+        color: var(--ink); font-size: 118px; font-weight: 900; line-height: 1.02;
+        letter-spacing: -0.035em; text-transform: lowercase; opacity: 0;
+      }
+      #frase b { color: var(--cor-b); font-weight: 900; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="8" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="8" data-track-index="0"></div>
+      <div id="palavras" class="clip" data-start="0" data-duration="8" data-track-index="1"></div>
+      <div id="frase" class="clip" data-start="0" data-duration="8" data-track-index="2"></div>
+      <div id="flash" class="clip" data-start="0" data-duration="8" data-track-index="3"></div>
+    </div>
+    <script>
+      // Template 05 — frase no ritmo (120 BPM, batida = 0,5 s)
+      const BPM = 120, BEAT = 60 / BPM, FPS = 30, F = 1 / FPS;
+      const palavras = ["edição", "boa", "não", "é", "sorte.", "é", "sistema", "que", "se", "repete."];
+      const destaque = new Set([1, 6]); // índices que vão na cor de acento
+      const corA = "#0d1b2e", corB = "#e85d26";
+
+      const box = document.getElementById("palavras");
+      palavras.forEach((p, i) => {
+        const el = document.createElement("div");
+        el.className = "palavra"; el.id = "p" + i; el.textContent = p;
+        box.appendChild(el);
+      });
+      document.getElementById("frase").innerHTML =
+        palavras.map((p, i) => destaque.has(i) ? `<b>${p}</b>` : p).join(" ");
+
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      palavras.forEach((p, i) => {
+        const t = i * BEAT;
+        const el = "#p" + i;
+        const fundoB = Math.floor(i / 4) % 2 === 1;
+        tl.set(el, { opacity: 1, color: fundoB ? corA : (destaque.has(i) ? corB : "#ffffff") }, t);
+        // tremida curta: 3 frames
+        tl.fromTo(el, { x: -10, scale: 1.08 }, { x: 0, scale: 1, duration: 3 * F, ease: "steps(3)" }, t);
+        tl.set(el, { opacity: 0 }, t + BEAT);
+        // flash de 2 frames
+        tl.fromTo("#flash", { opacity: 0.55 }, { opacity: 0, duration: 2 * F, ease: "none" }, t);
+        // fundo alterna a cada 4 batidas
+        if (i % 4 === 0) tl.set("#bg", { backgroundColor: (i / 4) % 2 === 0 ? corA : corB }, t);
+      });
+
+      // última batida: frase inteira monta e congela
+      const tFinal = palavras.length * BEAT;
+      tl.set("#bg", { backgroundColor: corA }, tFinal);
+      tl.fromTo("#frase", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 6 * F, ease: "power3.out" }, tFinal);
+      tl.fromTo("#flash", { opacity: 0.6 }, { opacity: 0, duration: 2 * F, ease: "none" }, tFinal);
+      tl.to({}, { duration: 8 - tFinal }, tFinal); // segura até 8 s
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
