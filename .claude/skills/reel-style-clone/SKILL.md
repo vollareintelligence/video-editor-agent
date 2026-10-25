@@ -51,6 +51,12 @@ file is the territory.
 [references/slides.md](references/slides.md): skip transcription and BPM, measure motion
 per region instead of cuts/sec, and read on-screen text from full-res frames.
 
+**Why it works (mechanism layer):** after the forensic style guide, run
+[references/viral-mechanism.md](references/viral-mechanism.md) to record the source's
+performance signals (engagement rate, outlier index), hook type, curiosity gap, emotion
+driver, comment trigger and originality guardrails, and emit a JSON production brief. Style
+says *how* it was cut; mechanism says *why* it holds attention.
+
 ### 1. Probe & cut detection
 
 `ffprobe` the reference (duration / resolution / fps). Detect hard cuts with

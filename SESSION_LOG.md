@@ -573,3 +573,16 @@ e ler o texto em frames de resolução cheia. Guia de formato em
 `references/format-carousel-ideas.md`. Novo skill `html-motion-templates` com 6
 contratos de animação reescritos (sem copiar prompts, paleta ou identidade da referência).
 Lição: `metadata=print` do ffmpeg só emite no stdout com `file=-`.
+
+## 2026-10-25 (noite) — curadoria de skills externas
+
+- Avaliados repositórios externos de skills de vídeo (índice awesome-claude-video-skills e
+  candidatos diretos). Critérios: licença permissiva, lacuna real no pacote, sem execução de
+  código de terceiros em tempo de execução, sem conteúdo de cópia/deepfake.
+- Adotado: `object-separation` (SAM 2 local), `tools/verify/` (probe-mp4, contact-sheet),
+  `short-form-video` (gramática de retenção; percentuais sem fonte sinalizados) e a camada
+  `reel-style-clone/references/viral-mechanism.md` (por que a referência funciona + sinais
+  de desempenho).
+- Documentado, não copiado: skills da Remotion (sem LICENSE no repositório).
+- Lição: verificar o arquivo LICENSE no próprio repositório, não confiar no campo de licença
+  de índices de terceiros. O pacote upstream deste fork também não tem LICENSE.

@@ -16,7 +16,8 @@ every real edit without ever carrying the edit's private details.
   video-edit-pipeline/     # MASTER orchestrator — start here; routes to everything below
   branded-ad-edit/         # raw talking head → branded motion-graphics ad (HyperFrames)
   reel-recut/              # spec-driven creator reel: banner, karaoke captions, callouts, silence cuts
-  reel-style-clone/        # reference reel → STYLE-GUIDE.md + build directives (slides mode: references/slides.md)
+  reel-style-clone/        # reference reel → STYLE-GUIDE.md + build directives (slides mode: references/slides.md; why-it-works layer: references/viral-mechanism.md)
+  short-form-video/        # Reels/TikTok/Shorts retention grammar: hook, pattern interrupts, loop, 9:16 safe areas; third-party, MIT — see ATTRIBUTION.md
   html-motion-templates/   # timed motion contracts (5–15 s, 1080×1920) for HyperFrames: manifesto, logo, notifications, chat, beat type, VHS countdown
   object-separation/       # local SAM 2 subject cut-out (person/product/hand) with masks; third-party, MIT — see ATTRIBUTION.md
   arcads-video-edit/       # multi-take screen+camera+mic demo → EDL base cut → motion-graphics pass
@@ -194,6 +195,10 @@ A user's videos usually live in their own working repo, not here. The pattern:
 - **whisper-cli + ggml models** — word-level transcription and VAD for the cut planners
   (`WHISPER_CLI`, `WHISPER_MODEL`, `VAD_BIN`, `VAD_MODEL`).
 - **node >= 20**, **python3** (+ PIL; numpy/scipy for `ai-audio-sound-design`).
+- **Remotion agent skills (optional, for Remotion builds)** — install with
+  `npx skills add remotion-dev/skills`. Not vendored: the repo ships no LICENSE file.
+  Remotion itself is free for individuals and for-profit organizations with up to 3
+  employees; larger companies need a Company License (remotion.dev/license).
 - **ElevenLabs API** — `ELEVENLABS_API_KEY`; **OpenAI** (optional) — `OPENAI_API_KEY`;
   **Gemini** (optional) — `GEMINI_API_KEY`; **Arcads** (optional) — `ARCADS_BASIC_AUTH` /
   `ARCADS_API_KEY` + workspace ids; **OpenArt MCP** (optional).
